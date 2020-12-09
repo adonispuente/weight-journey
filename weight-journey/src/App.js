@@ -3,11 +3,13 @@ import React from "react";
 import './App.css';
 import WeightJourney from './WeightJourney/WeightJourney'
 
+
 function App() {
   return (
     <div className="App">
-      
+     
       <WeightJourney></WeightJourney>
+     
     </div>
   );
 }

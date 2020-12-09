@@ -5,19 +5,7 @@ import { PieChart } from 'react-minimal-pie-chart';
 import {useSelector, useDispatch} from 'react-redux'
 import allActions from "../actions";
 import { getPerson } from "../actions/submitWeightAction";
-
-
-// import Paper from '@material-ui/core/Paper';
-// import {
-//   Chart,
-//   BarSeries,
-//   Title,
-//   ArgumentAxis,
-//   ValueAxis,
-// } from '@devexpress/dx-react-chart-material-ui';
-// import { Animation } from '@devexpress/dx-react-chart';
-
-
+import Form from './FormUI/Form'
 
 
 export default function Calculations(){
@@ -87,6 +75,7 @@ export default function Calculations(){
     return(
     <div>
         <div>
+        <Form> </Form>
                 <form onSubmit={submitForm}>
                     <h1>Step 1</h1>
                     <label>

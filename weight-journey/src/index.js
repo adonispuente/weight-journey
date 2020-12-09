@@ -8,6 +8,8 @@ import {createStore,applyMiddleware} from 'redux'
 import reducer from './reducers/send'
 import logger from "redux-logger";
 import thunk from "redux-thunk";
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+
 
 
 const store = createStore(
@@ -17,9 +19,11 @@ const store = createStore(
 
 ReactDOM.render(
   <Provider store ={store} >
+  
   <React.StrictMode>
     <App />
   </React.StrictMode>
+ 
   </Provider>,
   document.getElementById('root')
 );
