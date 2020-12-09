@@ -1,7 +1,16 @@
 import allActions from '../actions/index'
 
 const initialState = {
-    person:[],
+    person:{
+        WeightType: "",
+        //currentWeight
+        CW:"",
+        //Estimated body fat
+        EBF:"",
+        //Goal weight Change Per week
+        GWCPW:"",
+        date:""
+    },
 };
 
 const reducer = (state = initialState, action) => {
@@ -17,7 +26,9 @@ const reducer = (state = initialState, action) => {
           CW: action.payload.CW,
           EBF: action.payload.EBF,
           GWCPW:action.payload.GWCPW,
-          date: action.payload.startDate
+          date: action.payload.startDate,
+          height:action.payload.height,
+          age:action.payload.age
         };
         return { ...state, person: [...state.person, newPerson] };
   

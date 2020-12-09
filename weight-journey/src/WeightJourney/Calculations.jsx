@@ -4,6 +4,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { PieChart } from 'react-minimal-pie-chart';
 import {useSelector, useDispatch} from 'react-redux'
 import allActions from "../actions";
+import { getPerson } from "../actions/submitWeightAction";
 
 
 // import Paper from '@material-ui/core/Paper';
@@ -43,16 +44,24 @@ export default function Calculations(){
         EBF:"",
         //Goal weight Change Per week
         GWCPW:"",
+        height:"",
+        age:"",
     }
    
    
-
-    const [person,setPerson] = useSelector(state => state.person);
+    const data = false;
+    const person = useSelector(state => state.person);
     // const [error,setError] = useState();
     const [startDate, setStartDate] = useState(new Date());
     const dispatch = useDispatch()
-    
+    const [metrics,setMetrics]= useState(false)
     const [currentPerson,setCurrentPerson] = useState(initialPerson);
+
+
+    
+    // console.log(person)
+
+
     const Changing = (event)=>{
         // setPerson({...person, [event.target.name]: event.target.value})
         const name = event.target.name;
@@ -64,19 +73,21 @@ export default function Calculations(){
         })
     }
     
+    const submitForm = (e) => {
+        e.preventDefault();
+        setMetrics(true)
+      };
+    
     
 
-    // useEffect(()=>{
-    //     dispatch.allActions.getPerson(person)
-    // },[])
+   
     
 
-//   console.log(person)
 
     return(
     <div>
         <div>
-                <form>
+                <form onSubmit={submitForm}>
                     <h1>Step 1</h1>
                     <label>
                         <select
@@ -113,15 +124,37 @@ export default function Calculations(){
                             onChange={Changing}
                             />
                     </label>
-                    <button onClick={()=>dispatch(allActions.postPerson())}>Add your stats!</button>
+                    <label>
+                            <input
+                            name ="height"
+                            placeholder="Height in cm"
+                            value={currentPerson.height}
+                            onChange={Changing}
+                            />
+                    </label>
+                    <label>
+                            <input
+                            name ="age"
+                            placeholder="age"
+                            value={currentPerson.age}
+                            onChange={Changing}
+                            />
+                    </label>
+                    
+
+                    <button onClick={()=>dispatch(allActions.postPerson(currentPerson))}>Add your stats!</button>
                 </form>
                 <hr></hr>
                 <h3>Don't know youre Body Fat%? Lets get you an estimate!</h3>
         </div>
+                  
 
-        
+
         <div>
                <h2>Step 2</h2>
+               <p style={{color:'red'}}>Protein</p>
+               <p style={{color:'green'}}>carbs</p>
+               <p style={{color:'blue'}}>fats</p>
                <div style={piestyle}>
                <PieChart 
                     totalValue={100}
@@ -155,9 +188,20 @@ export default function Calculations(){
 
                     />
                 </div>
-               <p style={{paddingTop:'40px'}}>Your Total Daily Energy Expenditure and macronutrient requirments</p>     
+               <p style={{paddingTop:'40px'}}>Your Total Daily Energy Expenditure and macronutrient requirments</p>
+               <div>
+                            {metrics !== false ? (
+                                    <p>Your estimated Current TDEE is {Math.round(1.4* (66 + (6.23 * person.CW) +(12.7 * person.height) - (6.8 * person.age)))}</p>
+                                    
+
+
+                                ) : (
+                                    <div />
+                                )}
+                    </div>   
+                 
         </div>
-        </div>
+    </div>
     );
 }
 
