@@ -35,7 +35,7 @@ export default function Calculations(){
 
 
     const initialPerson = {
-        WeightType: "",
+        Lifestyle: "",
         //currentWeight
         CW:"",
         //Estimated body fat
@@ -88,25 +88,29 @@ export default function Calculations(){
                     <h1 class= 'h1'>Step 1</h1>
                     <label className="form-input">
                         <select class="form-input"
-                         id ="WeightType" name = "WeightType" placeholder ="Weight Type?" value={currentPerson.WeightType} onChange={Changing}>
-                            <option style={{color:'white'}}>Select Lb or Kg</option>
-                            <option >Lb</option>
-                            <option >Kg </option>
+                         id ="Lifestyle" name = "Lifestyle" placeholder ="Activity Level" value={currentPerson.Lifestyle} onChange={Changing}>
+                            <option style={{color:'white'}}>Whats your lifestyle?</option>
+                            <option value={1.2}>little to none</option>
+                            <option value={1.375}> 1-3 days a week</option>
+                            <option value={1.55}>3-5 days a week</option>
+                            <option value={1.7}>6-7 days a week </option>
+                            <option value={1.9}>Every day!!!</option>
+                            
                         </select>
                     </label>
-                            <label>
+                    {/* <label>
                             <DatePicker class="form-input" placeholder="Date" name="date" selected={startDate} onChange={date => setStartDate(date)}  />
-                            </label>
+                    </label> */}
                     <label>
                             <input 
                             class="form-input"
                             name ="CW"
-                            placeholder="Current Weight"
+                            placeholder="Weight in Lbs"
                             value={currentPerson.CW}
                             onChange={Changing}
                             />
                     </label>
-                    <label>
+                    {/* <label>
                             <input
                             class="form-input"
                             name ="EBF"
@@ -114,15 +118,20 @@ export default function Calculations(){
                             value={currentPerson.EBF}
                             onChange={Changing}
                             />
-                    </label>
+                    </label> */}
                     <label>
-                            <input
-                            class="form-input"
-                            name ="GWCPW"
-                            placeholder="Goal Weight Change Per week??"
-                            value={currentPerson.GWCPW}
-                            onChange={Changing}
-                            />
+                           
+                            <p style={{color:'white',opacity:'0.5',fontSize:'14px'}}>This is per week</p>
+                             <select class="form-input"
+                         id ="GWCPW" name = "GWCPW" placeholder="Goal Weight Change Per week??" value={currentPerson.GWCPW} onChange={Changing}>
+                            <option style={{color:'white'}}>Goal Weight Change</option>
+                            <option value={-500}>-1lb a week</option>
+                            <option value={-250}> -0.5lb a week</option>
+                            <option value={0}>Maintain</option>
+                            <option value={250}>0.5lb a week </option>
+                            <option value={500}>1lb a week</option>
+                            
+                        </select>
                     </label>
                     <label>
                             <input
@@ -137,7 +146,7 @@ export default function Calculations(){
                             <input
                             class="form-input"
                             name ="age"
-                            placeholder="age"
+                            placeholder="Age"
                             value={currentPerson.age}
                             onChange={Changing}
                             />
@@ -156,8 +165,8 @@ export default function Calculations(){
                <h1 class= 'h1'>Step 2</h1>
                <div class="pcf">
                     <p style={{color:'#23c7da'}}>Protein</p>
-                    <p style={{color:'black'}}>carbs</p>
-                    <p style={{color:'#c0c0c0'}}>fats</p>
+                    <p style={{color:'black'}}>Carbohydrates</p>
+                    <p style={{color:'#c0c0c0'}}>Fats</p>
                </div>
                <div style={piestyle} class="pie">
                <PieChart 
@@ -194,11 +203,16 @@ export default function Calculations(){
 
                     />
                 </div>
-               <p style={{paddingTop:'40px', color:'white'}}>Your Total Daily Energy Expenditure and macronutrient requirments</p>
+               <p style={{paddingTop:'40px', color:'white'}}>Your Total Daily Energy Expenditure is...</p>
                <div>
                             {metrics !== false ? (
-                                    <p style={{color:'white'}}>Your estimated Current TDEE is {Math.round(1.4* (66 + (6.23 * person.CW) +(12.7 * person.height) - (6.8 * person.age)))}</p>
+                                <div>
                                     
+                                    <p style={{color:'white'}}>Your estimated Current TDEE is {Math.round(person.Lifestyle * (66 + (6.23 * person.CW) +(12.7 * person.height) - (6.8 * person.age)))}</p>
+                                    <hr></hr>
+                                    <p style={{color:'white'}}> To reach your goal, you have to eat {+currentPerson.GWCPW +(+Math.round(person.Lifestyle * (66 + (6.23 * person.CW) +(12.7 * person.height) - (6.8 * person.age))))}</p>
+                                
+                                </div>
 
 
                                 ) : (

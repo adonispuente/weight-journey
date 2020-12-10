@@ -2,8 +2,7 @@ import allActions from '../actions/index'
 
 const initialState = {
     person:{
-        WeightType: "",
-        //currentWeight
+      Lifestyle: "",
         CW:"",
         //Estimated body fat
         EBF:"",
@@ -22,7 +21,7 @@ const reducer = (state = initialState, action) => {
         };
       case "POST_PERSON":
         const newPerson = {
-          name: action.payload.WeightType,
+          Lifestyle: action.payload.Lifestyle,
           CW: action.payload.CW,
           EBF: action.payload.EBF,
           GWCPW:action.payload.GWCPW,
