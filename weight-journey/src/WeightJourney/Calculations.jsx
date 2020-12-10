@@ -6,6 +6,19 @@ import {useSelector, useDispatch} from 'react-redux'
 import allActions from "../actions";
 import { getPerson } from "../actions/submitWeightAction";
 import Form from './FormUI/Form'
+import { reduxForm, Field } from 'redux-form'
+import MenuItem from 'material-ui/MenuItem'
+import { RadioButton } from 'material-ui/RadioButton'
+// // import {
+// //   Checkbox,
+// //   RadioButtonGroup,
+// //   SelectField,
+// //   TextField,
+// //   Toggle,
+// //   DatePicker
+// // } from 'redux-form-material-ui'
+// import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import "./Calculations.css"
 
 
 export default function Calculations(){
@@ -15,13 +28,10 @@ export default function Calculations(){
         height: '40vh',
         padding:'0,40',
     }
-    // const shiftSize = 7;
     const lineWidth = 60;
-    const defaultLabelStyle = {
-        fontSize: '5px',
-        // fontFamily: 'sans-serif',
-      };    
 //----------------------------------------
+
+
 
 
     const initialPerson = {
@@ -46,12 +56,10 @@ export default function Calculations(){
     const [currentPerson,setCurrentPerson] = useState(initialPerson);
 
 
-    
-    // console.log(person)
-
 
     const Changing = (event)=>{
         // setPerson({...person, [event.target.name]: event.target.value})
+        console.log(event.target)
         const name = event.target.name;
         const value = event.target.value;
 
@@ -68,29 +76,30 @@ export default function Calculations(){
     
     
 
-   
-    
+ 
 
 
     return(
     <div>
-        <div>
-        <Form> </Form>
-                <form onSubmit={submitForm}>
-                    <h1>Step 1</h1>
-                    <label>
-                        <select
+        
+        <div className="flex">
+            <div class="spacing">
+                <form onSubmit={submitForm} class="box container">
+                    <h1 class= 'h1'>Step 1</h1>
+                    <label className="form-input">
+                        <select class="form-input"
                          id ="WeightType" name = "WeightType" placeholder ="Weight Type?" value={currentPerson.WeightType} onChange={Changing}>
-                            <option>Select Weight Conversion</option>
+                            <option style={{color:'white'}}>Select Lb or Kg</option>
                             <option >Lb</option>
                             <option >Kg </option>
                         </select>
                     </label>
                             <label>
-                            <DatePicker placeholder="Date" name="date" selected={startDate} onChange={date => setStartDate(date)}  />
+                            <DatePicker class="form-input" placeholder="Date" name="date" selected={startDate} onChange={date => setStartDate(date)}  />
                             </label>
                     <label>
-                            <input
+                            <input 
+                            class="form-input"
                             name ="CW"
                             placeholder="Current Weight"
                             value={currentPerson.CW}
@@ -99,6 +108,7 @@ export default function Calculations(){
                     </label>
                     <label>
                             <input
+                            class="form-input"
                             name ="EBF"
                             placeholder="Estimated BodyFat%?"
                             value={currentPerson.EBF}
@@ -107,6 +117,7 @@ export default function Calculations(){
                     </label>
                     <label>
                             <input
+                            class="form-input"
                             name ="GWCPW"
                             placeholder="Goal Weight Change Per week??"
                             value={currentPerson.GWCPW}
@@ -115,6 +126,7 @@ export default function Calculations(){
                     </label>
                     <label>
                             <input
+                            class="form-input"
                             name ="height"
                             placeholder="Height in cm"
                             value={currentPerson.height}
@@ -123,6 +135,7 @@ export default function Calculations(){
                     </label>
                     <label>
                             <input
+                            class="form-input"
                             name ="age"
                             placeholder="age"
                             value={currentPerson.age}
@@ -131,30 +144,34 @@ export default function Calculations(){
                     </label>
                     
 
-                    <button onClick={()=>dispatch(allActions.postPerson(currentPerson))}>Add your stats!</button>
+                    <button class="button" onClick={()=>dispatch(allActions.postPerson(currentPerson))}>Add your stats!
+        
+                    </button>
+                    
+                    
                 </form>
-                <hr></hr>
-                <h3>Don't know youre Body Fat%? Lets get you an estimate!</h3>
-        </div>
-                  
+            </div>
 
-
-        <div>
-               <h2>Step 2</h2>
-               <p style={{color:'red'}}>Protein</p>
-               <p style={{color:'green'}}>carbs</p>
-               <p style={{color:'blue'}}>fats</p>
-               <div style={piestyle}>
+        <div className="spacing step2">
+               <h1 class= 'h1'>Step 2</h1>
+               <div class="pcf">
+                    <p style={{color:'#23c7da'}}>Protein</p>
+                    <p style={{color:'black'}}>carbs</p>
+                    <p style={{color:'#c0c0c0'}}>fats</p>
+               </div>
+               <div style={piestyle} class="pie">
                <PieChart 
+               
                     totalValue={100}
                         data={[
-                            { title: 'Protein', value: 20, color: '#457b9d' },
-                            { title: 'Carbs', value: 40, color: '#ef233c' },
-                            { title: 'Fats', value: 40, color: '#52b788' },
+                            { title: 'Protein', value: 20, color: '#c0c0c0' },
+                            { title: 'Carbs', value: 40, color: '#23c7da' },
+                            { title: 'Fats', value: 40, color: 'black' },
                         ]}
                         segmentsStyle={{ transition: 'stroke .3s', cursor: 'pointer' }}
                         animate
                         // onClick={PieChart.animate}
+                        
                         animationDuration={1000}
                         //the donut part
                         lineWidth={60}
@@ -177,10 +194,10 @@ export default function Calculations(){
 
                     />
                 </div>
-               <p style={{paddingTop:'40px'}}>Your Total Daily Energy Expenditure and macronutrient requirments</p>
+               <p style={{paddingTop:'40px', color:'white'}}>Your Total Daily Energy Expenditure and macronutrient requirments</p>
                <div>
                             {metrics !== false ? (
-                                    <p>Your estimated Current TDEE is {Math.round(1.4* (66 + (6.23 * person.CW) +(12.7 * person.height) - (6.8 * person.age)))}</p>
+                                    <p style={{color:'white'}}>Your estimated Current TDEE is {Math.round(1.4* (66 + (6.23 * person.CW) +(12.7 * person.height) - (6.8 * person.age)))}</p>
                                     
 
 
@@ -190,6 +207,12 @@ export default function Calculations(){
                     </div>   
                  
         </div>
+                
+                {/* <h3>Don't know youre Body Fat%? Lets get you an estimate!</h3> */}
+        </div>
+                  
+
+
     </div>
     );
 }
