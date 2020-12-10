@@ -27,7 +27,8 @@ const reducer = (state = initialState, action) => {
           GWCPW:action.payload.GWCPW,
           date: action.payload.startDate,
           height:action.payload.height,
-          age:action.payload.age
+          age:action.payload.age,
+          MF:action.payload.MF,
         };
         return { ...state, person: [...state.person, newPerson] };
   

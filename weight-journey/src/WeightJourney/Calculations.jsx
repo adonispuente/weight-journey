@@ -44,13 +44,16 @@ export default function Calculations(){
         GWCPW:"",
         height:"",
         age:"",
+        MF:"",
     }
    
    
     const data = false;
+    const [male,setMale] = useState(false);
+    const [female,setFemale] = useState(false);
     const person = useSelector(state => state.person);
     // const [error,setError] = useState();
-    const [startDate, setStartDate] = useState(new Date());
+    // const [startDate, setStartDate] = useState(new Date());
     const dispatch = useDispatch()
     const [metrics,setMetrics]= useState(false)
     const [currentPerson,setCurrentPerson] = useState(initialPerson);
@@ -72,6 +75,15 @@ export default function Calculations(){
     const submitForm = (e) => {
         e.preventDefault();
         setMetrics(true)
+
+        if(currentPerson.MF=='Male'){
+            setMale(true);
+            setFemale(false);
+        }else if(currentPerson.MF=='Female'){
+            setFemale(true);
+            setMale(false);
+        }
+        
       };
     
     
@@ -90,11 +102,11 @@ export default function Calculations(){
                         <select class="form-input"
                          id ="Lifestyle" name = "Lifestyle" placeholder ="Activity Level" value={currentPerson.Lifestyle} onChange={Changing}>
                             <option style={{color:'white'}}>Whats your lifestyle?</option>
-                            <option value={1.2}>little to none</option>
-                            <option value={1.375}> 1-3 days a week</option>
-                            <option value={1.55}>3-5 days a week</option>
-                            <option value={1.7}>6-7 days a week </option>
-                            <option value={1.9}>Every day!!!</option>
+                            <option value={1}>little to none</option>
+                            <option value={1.2}> 1-3 days a week</option>
+                            <option value={1.375}>3-5 days a week</option>
+                            <option value={1.55}>6-7 days a week </option>
+                            <option value={1.7}>Every day!!!</option>
                             
                         </select>
                     </label>
@@ -110,20 +122,21 @@ export default function Calculations(){
                             onChange={Changing}
                             />
                     </label>
-                    {/* <label>
-                            <input
-                            class="form-input"
-                            name ="EBF"
-                            placeholder="Estimated BodyFat%?"
-                            value={currentPerson.EBF}
-                            onChange={Changing}
-                            />
-                    </label> */}
+                    {/* male or female part */}
+                    <label>
+                        <select class="form-input"
+                            id ="MF" name = "MF" placeholder="Male or Female" value={currentPerson.MF} onChange={Changing}>
+                            <option style={{color:'white'}}>Male or Female</option>
+                            <option value={'Male'}>Male</option>
+                            <option value={'Female'}> Female</option>
+                           
+                        </select>
+                    </label>
                     <label>
                            
                             <p style={{color:'white',opacity:'0.5',fontSize:'14px'}}>This is per week</p>
-                             <select class="form-input"
-                         id ="GWCPW" name = "GWCPW" placeholder="Goal Weight Change Per week??" value={currentPerson.GWCPW} onChange={Changing}>
+                        <select class="form-input"
+                            id ="GWCPW" name = "GWCPW" placeholder="Goal Weight Change Per week??" value={currentPerson.GWCPW} onChange={Changing}>
                             <option style={{color:'white'}}>Goal Weight Change</option>
                             <option value={-500}>-1lb a week</option>
                             <option value={-250}> -0.5lb a week</option>
@@ -137,7 +150,7 @@ export default function Calculations(){
                             <input
                             class="form-input"
                             name ="height"
-                            placeholder="Height in cm"
+                            placeholder="Height in inches"
                             value={currentPerson.height}
                             onChange={Changing}
                             />
@@ -149,7 +162,7 @@ export default function Calculations(){
                             placeholder="Age"
                             value={currentPerson.age}
                             onChange={Changing}
-                            />
+                            /> 
                     </label>
                     
 
@@ -205,10 +218,23 @@ export default function Calculations(){
                 </div>
                <p style={{paddingTop:'40px', color:'white'}}>Your Total Daily Energy Expenditure is...</p>
                <div>
-                            {metrics !== false ? (
+                            {metrics !== false&& male == true ? (
                                 <div>
                                     
                                     <p style={{color:'white'}}>Your estimated Current TDEE is {Math.round(person.Lifestyle * (66 + (6.23 * person.CW) +(12.7 * person.height) - (6.8 * person.age)))}</p>
+                                    <hr></hr>
+                                    <p style={{color:'white'}}> To reach your goal, you have to eat {+currentPerson.GWCPW +(+Math.round(person.Lifestyle * (66 + (6.23 * person.CW) +(12.7 * person.height) - (6.8 * person.age))))}</p>
+                                
+                                </div>
+
+
+                                ) : (
+                                    <div />
+                                )}
+                                 {metrics !== false&& female == true ? (
+                                <div>
+                                    
+                                    <p style={{color:'white'}}>Your estimated Current TDEE is {Math.round(person.Lifestyle * (655 + (4.35 * person.CW) +(4.7 * person.height) - (4.7 * person.age)))}</p>
                                     <hr></hr>
                                     <p style={{color:'white'}}> To reach your goal, you have to eat {+currentPerson.GWCPW +(+Math.round(person.Lifestyle * (66 + (6.23 * person.CW) +(12.7 * person.height) - (6.8 * person.age))))}</p>
                                 
