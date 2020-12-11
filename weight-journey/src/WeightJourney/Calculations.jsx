@@ -4,20 +4,6 @@ import "react-datepicker/dist/react-datepicker.css";
 import { PieChart } from 'react-minimal-pie-chart';
 import {useSelector, useDispatch} from 'react-redux'
 import allActions from "../actions";
-import { getPerson } from "../actions/submitWeightAction";
-import Form from './FormUI/Form'
-import { reduxForm, Field } from 'redux-form'
-import MenuItem from 'material-ui/MenuItem'
-import { RadioButton } from 'material-ui/RadioButton'
-// // import {
-// //   Checkbox,
-// //   RadioButtonGroup,
-// //   SelectField,
-// //   TextField,
-// //   Toggle,
-// //   DatePicker
-// // } from 'redux-form-material-ui'
-// import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import "./Calculations.css"
 
 
