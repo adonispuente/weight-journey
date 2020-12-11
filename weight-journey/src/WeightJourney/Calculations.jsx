@@ -17,9 +17,6 @@ export default function Calculations(){
     const lineWidth = 60;
 //----------------------------------------
 
-
-
-
     const initialPerson = {
         Lifestyle: "",
         //currentWeight
@@ -79,7 +76,7 @@ export default function Calculations(){
 
     return(
     <div>
-         <h1>Figure Out How to Eat for Your Goals!</h1>
+         <h1>Figure Out How to Eat For Your Goals!</h1>
         <div className="flex">
            
             <div class="spacing">
