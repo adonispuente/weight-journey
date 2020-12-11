@@ -93,8 +93,9 @@ export default function Calculations(){
 
     return(
     <div>
-        
+         <h1>Figure Out How to Eat for Your Goals!</h1>
         <div className="flex">
+           
             <div class="spacing">
                 <form onSubmit={submitForm} class="box container">
                     <h1 class= 'h1'>Step 1</h1>
@@ -216,7 +217,7 @@ export default function Calculations(){
 
                     />
                 </div>
-               <p style={{paddingTop:'40px', color:'white'}}>Your Total Daily Energy Expenditure is...</p>
+               <p style={{paddingTop:'40px', color:'white'}}>Your Estimated Total Daily Energy Expenditure is...</p>
                <div>
                             {metrics !== false&& male == true ? (
                                 <div>
