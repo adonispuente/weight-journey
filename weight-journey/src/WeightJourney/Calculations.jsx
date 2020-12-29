@@ -272,15 +272,25 @@ export default function Calculations(){
                         
                         {/* <h3>Don't know youre Body Fat%? Lets get you an estimate!</h3> */}
                 </div>
-                  <hr></hr>
+                  
             
             </div>
                   <div>                          
-                    <h1 style={{color:'black'}}>Why be passionate about exercise?</h1>
-                    <div><FontAwesomeIcon icon ={faBrain} size="4x" transform="shrink-6 left-4" /></div>
-                    <div><FontAwesomeIcon icon ={faDumbbell} size="4x" /></div>  
-                    <div><FontAwesomeIcon icon ={faHeartbeat} size="4x" /></div>
-                    
+                    <h1 style={{color:'#c0c0c0', textDecoration:'underline'}}>Why be passionate about exercise?</h1>
+                        <div class='flex2'>
+                            <div class='card'>
+                                <FontAwesomeIcon icon ={faBrain} size="4x" color="#23c7da"/>
+                               <p>Exercise provides mental clarity. For many people it is a source of stress relief!</p>
+                            </div>
+                            <div class='card'>
+                                <FontAwesomeIcon icon ={faDumbbell} size="4x"color="#23c7da" />
+                                <p>Exercise makes muscles stronger, and with provided nutrients they become larger!</p>
+                            </div>  
+                            <div class='card'>
+                                <FontAwesomeIcon icon ={faHeartbeat} size="4x" color="#23c7da"/>
+                                <p>Execise greatly helps reduce risk of heart attack, lower bad cholesterol, and improves recovery time from things like hospitilizations</p>
+                            </div>
+                        </div>
 
 
                   </div>                          
