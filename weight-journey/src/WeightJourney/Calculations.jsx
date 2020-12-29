@@ -40,6 +40,7 @@ export default function Calculations(){
     const dispatch = useDispatch()
     const [metrics,setMetrics]= useState(false)
     const [currentPerson,setCurrentPerson] = useState(initialPerson);
+    const [tdee, setTdee] = useState()
 
 
 
@@ -62,16 +63,23 @@ export default function Calculations(){
         if(currentPerson.MF=='Male'){
             setMale(true);
             setFemale(false);
+            setTdee(+currentPerson.GWCPW +(+Math.round(person.Lifestyle * (66 + (6.23 * person.CW) +(12.7 * person.height) - (6.8 * person.age)))));
         }else if(currentPerson.MF=='Female'){
             setFemale(true);
             setMale(false);
+            setTdee(+currentPerson.GWCPW +(+Math.round(person.Lifestyle * (66 + (6.23 * person.CW) +(12.7 * person.height) - (6.8 * person.age)))));
         }
         
       };
+    //   console.log(Math.round(personWeight + currentPerson.GWCPW))
     
-    
-
- 
+    //   if (male === true){
+    //     let personweight = Math.round(person.Lifestyle * (66 + (6.23 * person.CW) +(12.7 * person.height) - (6.8 * person.age)));
+    //   } else if (female === true){
+    //     let personweight = Math.round(person.Lifestyle * (655 + (4.35 * person.CW) +(4.7 * person.height) - (4.7 * person.age)));
+    //   }
+      
+      
 
 
     return(
@@ -170,9 +178,9 @@ export default function Calculations(){
                
                     totalValue={100}
                         data={[
-                            { title: 'Protein', value: 20, color: '#c0c0c0' },
-                            { title: 'Carbs', value: 40, color: '#23c7da' },
-                            { title: 'Fats', value: 40, color: 'black' },
+                            { title: 'Fats', value: 30, color: '#c0c0c0' },
+                            { title: 'Protein', value: 30, color: '#23c7da' },
+                            { title: 'Carbs', value: 40, color: 'black' },
                         ]}
                         segmentsStyle={{ transition: 'stroke .3s', cursor: 'pointer' }}
                         animate
@@ -199,16 +207,33 @@ export default function Calculations(){
 
 
                     />
+                   
                 </div>
-               <p style={{paddingTop:'40px', color:'white'}}>Your Estimated Total Daily Energy Expenditure is...</p>
-               <div>
-                            {metrics !== false&& male == true ? (
-                                <div>
+                {metrics === false? (
+                                <div >
                                     
-                                    <p style={{color:'white'}}>Your estimated Current TDEE is {Math.round(person.Lifestyle * (66 + (6.23 * person.CW) +(12.7 * person.height) - (6.8 * person.age)))}</p>
-                                    <hr></hr>
-                                    <p style={{color:'white'}}> To reach your goal, you have to eat {+currentPerson.GWCPW +(+Math.round(person.Lifestyle * (66 + (6.23 * person.CW) +(12.7 * person.height) - (6.8 * person.age))))}</p>
+                                    <p style={{paddingTop:'40px', color:'white'}}>Your Estimated Total Daily Energy Expenditure is...</p>
+
                                 
+                                </div>
+
+
+                                ) : (
+                                    <div />
+                                )}
+                        <div>
+                            {metrics !== false&& male == true ? (
+                                <div >
+                                    
+                                    <p style={{color:'white'}}>Your estimated Current TDEE is {Math.round(person.Lifestyle * (66 + (6.23 * person.CW) +(12.7 * person.height) - (6.8 * person.age)))} calories</p>
+                                    
+                                    <p style={{color:'white'}}> To reach your goal, you have to eat {+currentPerson.GWCPW +(+Math.round(person.Lifestyle * (66 + (6.23 * person.CW) +(12.7 * person.height) - (6.8 * person.age))))} calories a day. </p>
+                                   <p style={{color:'white'}}>For Macros, try to aim for :</p>
+                                   <div class= 'flex2'>
+                                        <p style={{color:'#23c7da', textDecoration:'underline'}}>{Math.round(((.30)*tdee/4))}g of Protein</p> 
+                                        <p style={{color:'black',textDecoration:'underline'}}>{Math.round(((.40)*tdee/4))}g of Carbohydrates</p>
+                                        <p style={{color:'#c0c0c0',textDecoration:'underline'}}>{Math.round(((.30)*tdee/9))}g of Fat</p>
+                                    </div>
                                 </div>
 
 
@@ -216,11 +241,15 @@ export default function Calculations(){
                                     <div />
                                 )}
                                  {metrics !== false&& female == true ? (
-                                <div>
+                                <div class ='flex2'>
                                     
                                     <p style={{color:'white'}}>Your estimated Current TDEE is {Math.round(person.Lifestyle * (655 + (4.35 * person.CW) +(4.7 * person.height) - (4.7 * person.age)))}</p>
-                                    <hr></hr>
+                                    
                                     <p style={{color:'white'}}> To reach your goal, you have to eat {+currentPerson.GWCPW +(+Math.round(person.Lifestyle * (66 + (6.23 * person.CW) +(12.7 * person.height) - (6.8 * person.age))))}</p>
+                                
+                                    <p style={{color:'#23c7da'}}>{Math.round(((.30)*tdee/4))}g of Protein</p> 
+                                    <p style={{color:'black'}}>{Math.round(((.40)*tdee/4))}g of Carbohydrates</p>
+                                    <p style={{color:'#c0c0c0'}}>{Math.round(((.30)*tdee/9))}g of Fat</p>
                                 
                                 </div>
 
@@ -228,7 +257,8 @@ export default function Calculations(){
                                 ) : (
                                     <div />
                                 )}
-                    </div>   
+                                
+                        </div>   
                  
         </div>
                 
