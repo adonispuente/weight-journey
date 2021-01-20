@@ -10,12 +10,12 @@ import { faBrain } from '@fortawesome/free-solid-svg-icons'
 import { faDumbbell } from '@fortawesome/free-solid-svg-icons'
 import { faHeartbeat } from '@fortawesome/free-solid-svg-icons'
 import styled from 'styled-components'
-import bg4 from '../Pictures/bg4.png'
+import bg7 from '../Pictures/bg7.png'
 
 
 const Background = styled.section`
   background-attachment: fixed;
-  background-image: url(${bg4});
+  background-image: url(${bg7});
   width: 100%;
   object-fit: cover;
   background-repeat: no-repeat;
