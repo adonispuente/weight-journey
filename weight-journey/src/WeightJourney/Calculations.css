@@ -68,6 +68,12 @@ p {
     border-radius: 1px;
     width: 100%;
   }
+  .pie {
+    width: 100% !important;
+  }
+  .pcf {
+    margin: 0 auto;
+  }
 }
 @media (min-width: 640px) {
   .spacing {
@@ -90,11 +96,11 @@ p {
   width: 100%;
   justify-content: space-around;
   font-family: sans-serif;
+  width: 80%;
 }
 
 button {
-  background: #f72585;
-
+  background: #4361ee;
   font-family: "Montserrat", sans-serif;
   color: #fff;
   text-transform: uppercase;
@@ -112,7 +118,7 @@ button {
 }
 
 button:hover {
-  background: #4361ee;
+  background: #f72585;
   color: #fff;
   border-radius: 5px;
   cursor: pointer;
@@ -122,7 +128,7 @@ button:hover {
   background: transparent;
   color: #fff;
   border-radius: 5px;
-
+  width: 80%;
   transition: 0.9s all ease-in-out;
 }
 
@@ -155,6 +161,22 @@ select {
 
 .secondHalf {
   padding-top: 20px;
+}
+
+.macros {
+  background: white;
+  border-radius: 20px;
+  opacity: 0.8;
+  border: 2px solid black;
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+}
+
+@media (max-width: 576px) {
+  .macros {
+    flex-direction: column;
+  }
 }
 
 /* input:-webkit-autofill,

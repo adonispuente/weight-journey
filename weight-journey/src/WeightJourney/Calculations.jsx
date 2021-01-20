@@ -116,7 +116,7 @@ export default function Calculations(){
                             <div class="pcf">
                                     <h1 style={{color:'#4361EE'}}>Protein</h1>
                                     <h1 style={{color:'black'}}>Carbohydrates</h1>
-                                    <h1 style={{color:'white'}}>Fats</h1>
+                                    <h1 style={{color:'#adb5bd'}}>Fats</h1>
                             </div>
                             <div style={piestyle} class="pie">
                             <PieChart 
@@ -168,14 +168,16 @@ export default function Calculations(){
                                             {metrics !== false&& male == true ? (
                                                 <div >
                                                     
-                                                    <p style={{color:'white'}}>Your estimated Current TDEE is {Math.round(person.Lifestyle * (66 + (6.23 * person.CW) +(12.7 * person.height) - (6.8 * person.age)))} calories</p>
+                                                    <p >Your estimated Current TDEE is <span style={{color:'#F72585', textDecoration:'underline'}}>{Math.round(person.Lifestyle * (66 + (6.23 * person.CW) +(12.7 * person.height) - (6.8 * person.age)))}</span> calories</p>
                                                     
-                                                    <p style={{color:'white'}}> To reach your goal, you have to eat {+currentPerson.GWCPW +(+Math.round(person.Lifestyle * (66 + (6.23 * person.CW) +(12.7 * person.height) - (6.8 * person.age))))} calories a day. </p>
-                                                <p style={{color:'white'}}>For Macros, try to aim for :</p>
+                                                    <p > To reach your goal, you have to eat <span style={{color:'#F72585', textDecoration:'underline'}}>{+currentPerson.GWCPW +(+Math.round(person.Lifestyle * (66 + (6.23 * person.CW) +(12.7 * person.height) - (6.8 * person.age))))}</span> calories a day. </p>
+                                                <p >For Macros, try to aim for :</p>
                                                 <div class= 'flex2'>
-                                                        <p style={{color:'#4361EE', textDecoration:'underline'}}>{Math.round(((.30)*tdee/4))}g of Protein</p> 
-                                                        <p style={{color:'black',textDecoration:'underline'}}>{Math.round(((.40)*tdee/4))}g of Carbohydrates</p>
-                                                        <p style={{color:'#F72585',textDecoration:'underline'}}>{Math.round(((.30)*tdee/9))}g of Fat</p>
+                                                        <div class='macros'>
+                                                            <p style={{color:'#4361EE', textDecoration:'underline'}}>{Math.round(((.30)*tdee/4))}g of Protein</p> 
+                                                            <p style={{color:'black',textDecoration:'underline'}}>{Math.round(((.40)*tdee/4))}g of Carbohydrates</p>
+                                                            <p style={{color:'#adb5bd',textDecoration:'underline'}}>{Math.round(((.30)*tdee/9))}g of Fat</p>
+                                                        </div>
                                                     </div>
                                                 </div>
 
@@ -186,14 +188,14 @@ export default function Calculations(){
                                                 {metrics !== false&& female == true ? (
                                                 <div class ='flex2'>
                                                     
-                                                    <p style={{color:'white'}}>Your estimated Current TDEE is {Math.round(person.Lifestyle * (655 + (4.35 * person.CW) +(4.7 * person.height) - (4.7 * person.age)))}</p>
+                                                    <p >Your estimated Current TDEE is {Math.round(person.Lifestyle * (655 + (4.35 * person.CW) +(4.7 * person.height) - (4.7 * person.age)))}</p>
                                                     
-                                                    <p style={{color:'white'}}> To reach your goal, you have to eat {+currentPerson.GWCPW +(+Math.round(person.Lifestyle * (66 + (6.23 * person.CW) +(12.7 * person.height) - (6.8 * person.age))))}</p>
-                                                
-                                                    <p style={{color:'#4361EE'}}>{Math.round(((.30)*tdee/4))}g of Protein</p> 
-                                                    <p style={{color:'black'}}>{Math.round(((.40)*tdee/4))}g of Carbohydrates</p>
-                                                    <p style={{color:'#F72585'}}>{Math.round(((.30)*tdee/9))}g of Fat</p>
-                                                
+                                                    <p > To reach your goal, you have to eat {+currentPerson.GWCPW +(+Math.round(person.Lifestyle * (66 + (6.23 * person.CW) +(12.7 * person.height) - (6.8 * person.age))))}</p>
+                                                    <div class='macros'>
+                                                        <p style={{color:'#4361EE'}}>{Math.round(((.30)*tdee/4))}g of Protein</p> 
+                                                        <p style={{color:'black'}}>{Math.round(((.40)*tdee/4))}g of Carbohydrates</p>
+                                                        <p style={{color:'#adb5bd'}}>{Math.round(((.30)*tdee/9))}g of Fat</p>
+                                                    </div>
                                                 </div>
 
 
