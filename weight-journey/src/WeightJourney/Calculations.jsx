@@ -114,9 +114,9 @@ export default function Calculations(){
                         <div className="spacing step2">
                             
                             <div class="pcf">
-                                    <p style={{color:'#4361EE'}}>Protein</p>
-                                    <p style={{color:'black'}}>Carbohydrates</p>
-                                    <p style={{color:'white'}}>Fats</p>
+                                    <h1 style={{color:'#4361EE'}}>Protein</h1>
+                                    <h1 style={{color:'black'}}>Carbohydrates</h1>
+                                    <h1 style={{color:'white'}}>Fats</h1>
                             </div>
                             <div style={piestyle} class="pie">
                             <PieChart 
@@ -129,7 +129,7 @@ export default function Calculations(){
                                         ]}
                                         segmentsStyle={{ transition: 'stroke .3s', cursor: 'pointer' }}
                                         animate
-                                        animationDuration={1000}
+                                        animationDuration={2000}
                                         //the donut part
                                         lineWidth={60}
                                         label={({ dataEntry }) => Math.round(dataEntry.percentage) + '%'}
