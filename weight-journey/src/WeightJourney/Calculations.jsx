@@ -9,7 +9,20 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBrain } from '@fortawesome/free-solid-svg-icons'
 import { faDumbbell } from '@fortawesome/free-solid-svg-icons'
 import { faHeartbeat } from '@fortawesome/free-solid-svg-icons'
+import styled from 'styled-components'
+import bg4 from '../Pictures/bg4.png'
 
+
+const Background = styled.section`
+  background-attachment: fixed;
+  background-image: url(${bg4});
+  width: 100%;
+  object-fit: cover;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-repeat: no-repeat;
+  overflow-x: hidden;
+`;
 
 
 
@@ -18,8 +31,8 @@ export default function Calculations(){
  
 //styling for the pie chart ---------------------------------------
     var piestyle={
-        height: '40vh',
-        padding:'0,40',
+        // height: '40vh',
+        // padding:'0,40',
     }
     const lineWidth = 60;
 //----------------------------------------
@@ -90,15 +103,112 @@ export default function Calculations(){
 
 
     return(
-    <div >
+    <Background >
             <div class="wrapper">
-                <h2>Figure Out How to Eat For Your Goals!</h2>
+                {/* <h2>Figure Out How to Eat For Your Goals!</h2> */}
+               
                 <div className="flex">
                 
-                    <div class="spacing">
+                    
+
+                        <div className="spacing step2">
+                            
+                            <div class="pcf">
+                                    <p style={{color:'#4361EE'}}>Protein</p>
+                                    <p style={{color:'black'}}>Carbohydrates</p>
+                                    <p style={{color:'white'}}>Fats</p>
+                            </div>
+                            <div style={piestyle} class="pie">
+                            <PieChart 
+                            
+                                    totalValue={100}
+                                        data={[
+                                            { title: 'Fats', value: 30, color: '#adb5bd' },
+                                            { title: 'Protein', value: 30, color: '#4361EE' },
+                                            { title: 'Carbs', value: 40, color: 'black' },
+                                        ]}
+                                        segmentsStyle={{ transition: 'stroke .3s', cursor: 'pointer' }}
+                                        animate
+                                        animationDuration={1000}
+                                        //the donut part
+                                        lineWidth={60}
+                                        label={({ dataEntry }) => Math.round(dataEntry.percentage) + '%'}
+                                        labelPosition={100 - lineWidth / 2}
+                                        labelStyle={{
+                                            fill: '#fff',
+                                            pointerEvents: 'none',
+                                        }}
+                                        style={{
+                                            fontFamily:
+                                            '"Nunito Sans", -apple-system, Helvetica, Arial, sans-serif',
+                                            fontSize: '10px',
+                                            
+                                        }}
+                                        radius= {PieChart.defaultProps.radius-6}
+                                        //this is making the blue pop out more
+                                        //   segmentsShift={(index) => (index === 0 ? shiftSize : 0.5)}
+
+
+                                    />
+                                
+                                </div>
+                                {metrics === false? (
+                                                <div >
+                                                    
+                                                    <p style={{paddingTop:'40px'}}>Your Estimated Total Daily Energy Expenditure is...</p>
+
+                                                
+                                                </div>
+
+
+                                                ) : (
+                                                    <div />
+                                                )}
+                                        <div>
+                                            {metrics !== false&& male == true ? (
+                                                <div >
+                                                    
+                                                    <p style={{color:'white'}}>Your estimated Current TDEE is {Math.round(person.Lifestyle * (66 + (6.23 * person.CW) +(12.7 * person.height) - (6.8 * person.age)))} calories</p>
+                                                    
+                                                    <p style={{color:'white'}}> To reach your goal, you have to eat {+currentPerson.GWCPW +(+Math.round(person.Lifestyle * (66 + (6.23 * person.CW) +(12.7 * person.height) - (6.8 * person.age))))} calories a day. </p>
+                                                <p style={{color:'white'}}>For Macros, try to aim for :</p>
+                                                <div class= 'flex2'>
+                                                        <p style={{color:'#4361EE', textDecoration:'underline'}}>{Math.round(((.30)*tdee/4))}g of Protein</p> 
+                                                        <p style={{color:'black',textDecoration:'underline'}}>{Math.round(((.40)*tdee/4))}g of Carbohydrates</p>
+                                                        <p style={{color:'#F72585',textDecoration:'underline'}}>{Math.round(((.30)*tdee/9))}g of Fat</p>
+                                                    </div>
+                                                </div>
+
+
+                                                ) : (
+                                                    <div />
+                                                )}
+                                                {metrics !== false&& female == true ? (
+                                                <div class ='flex2'>
+                                                    
+                                                    <p style={{color:'white'}}>Your estimated Current TDEE is {Math.round(person.Lifestyle * (655 + (4.35 * person.CW) +(4.7 * person.height) - (4.7 * person.age)))}</p>
+                                                    
+                                                    <p style={{color:'white'}}> To reach your goal, you have to eat {+currentPerson.GWCPW +(+Math.round(person.Lifestyle * (66 + (6.23 * person.CW) +(12.7 * person.height) - (6.8 * person.age))))}</p>
+                                                
+                                                    <p style={{color:'#4361EE'}}>{Math.round(((.30)*tdee/4))}g of Protein</p> 
+                                                    <p style={{color:'black'}}>{Math.round(((.40)*tdee/4))}g of Carbohydrates</p>
+                                                    <p style={{color:'#F72585'}}>{Math.round(((.30)*tdee/9))}g of Fat</p>
+                                                
+                                                </div>
+
+
+                                                ) : (
+                                                    <div />
+                                                )}
+                                                
+                                        </div>   
+                                
+                        </div>
+                        <div class="spacing">
                         <form onSubmit={submitForm} class="box container">
-                            <h1 class= 'h1'>Step 1</h1>
+                            
                             <label className="form-input">
+                                <p class='formp'>Lifestyle:</p>
                                 <select class="form-input"
                                 id ="Lifestyle" name = "Lifestyle" placeholder ="Activity Level" value={currentPerson.Lifestyle} onChange={Changing}>
                                     <option style={{color:'white'}}>Whats your lifestyle?</option>
@@ -110,20 +220,9 @@ export default function Calculations(){
                                     
                                 </select>
                             </label>
-                            {/* <label>
-                                    <DatePicker class="form-input" placeholder="Date" name="date" selected={startDate} onChange={date => setStartDate(date)}  />
-                            </label> */}
+                           
                             <label>
-                                    <input 
-                                    class="form-input"
-                                    name ="CW"
-                                    placeholder="Weight in Lbs"
-                                    value={currentPerson.CW}
-                                    onChange={Changing}
-                                    />
-                            </label>
-                            {/* male or female part */}
-                            <label>
+                            <p class='formp'>Gender:</p>
                                 <select class="form-input"
                                     id ="MF" name = "MF" placeholder="Male or Female" value={currentPerson.MF} onChange={Changing}>
                                     <option style={{color:'white'}}>Male or Female</option>
@@ -132,9 +231,11 @@ export default function Calculations(){
                                 
                                 </select>
                             </label>
+                            
                             <label>
+                            <p class='formp'>Change Per Week:</p>
                                 
-                                    <p style={{color:'white',opacity:'0.5',fontSize:'14px'}}>This is per week</p>
+                                    {/* <p style={{color:'white',opacity:'0.5',fontSize:'14px'}}>This is per week</p> */}
                                 <select class="form-input"
                                     id ="GWCPW" name = "GWCPW" placeholder="Goal Weight Change Per week??" value={currentPerson.GWCPW} onChange={Changing}>
                                     <option style={{color:'white'}}>Goal Weight Change</option>
@@ -146,7 +247,20 @@ export default function Calculations(){
                                     
                                 </select>
                             </label>
+                            
+                            <label style={{paddingTop:'40px'}}>
+                            <p class='formp'>Current Weight:</p>
+                                    <input 
+                                    class="form-input"
+                                    name ="CW"
+                                    placeholder="Weight in Lbs"
+                                    value={currentPerson.CW}
+                                    onChange={Changing}
+                                    />
+                            </label>
+                            
                             <label>
+                            <p class='formp'>Height in inches:</p>
                                     <input
                                     class="form-input"
                                     name ="height"
@@ -155,7 +269,9 @@ export default function Calculations(){
                                     onChange={Changing}
                                     />
                             </label>
+                            
                             <label>
+                            <p class='formp'>Current Age:</p>
                                     <input
                                     class="form-input"
                                     name ="age"
@@ -173,128 +289,35 @@ export default function Calculations(){
                             
                         </form>
                     </div>
-
-                <div className="spacing step2">
-                    <h1 class= 'h1'>Step 2</h1>
-                    <div class="pcf">
-                            <p style={{color:'#23c7da'}}>Protein</p>
-                            <p style={{color:'black'}}>Carbohydrates</p>
-                            <p style={{color:'#c0c0c0'}}>Fats</p>
-                    </div>
-                    <div style={piestyle} class="pie">
-                    <PieChart 
-                    
-                            totalValue={100}
-                                data={[
-                                    { title: 'Fats', value: 30, color: '#c0c0c0' },
-                                    { title: 'Protein', value: 30, color: '#23c7da' },
-                                    { title: 'Carbs', value: 40, color: 'black' },
-                                ]}
-                                segmentsStyle={{ transition: 'stroke .3s', cursor: 'pointer' }}
-                                animate
-                                // onClick={PieChart.animate}
-                                
-                                animationDuration={1000}
-                                //the donut part
-                                lineWidth={60}
-                                label={({ dataEntry }) => Math.round(dataEntry.percentage) + '%'}
-                                labelPosition={100 - lineWidth / 2}
-                                labelStyle={{
-                                    fill: '#fff',
-                                    opacity: 0.75,
-                                    pointerEvents: 'none',
-                                }}
-                                style={{
-                                    fontFamily:
-                                    '"Nunito Sans", -apple-system, Helvetica, Arial, sans-serif',
-                                    fontSize: '10px',
-                                }}
-                                radius= {PieChart.defaultProps.radius-6}
-                                //this is making the blue pop out more
-                                //   segmentsShift={(index) => (index === 0 ? shiftSize : 0.5)}
-
-
-                            />
                         
-                        </div>
-                        {metrics === false? (
-                                        <div >
-                                            
-                                            <p style={{paddingTop:'40px', color:'white'}}>Your Estimated Total Daily Energy Expenditure is...</p>
-
-                                        
-                                        </div>
-
-
-                                        ) : (
-                                            <div />
-                                        )}
-                                <div>
-                                    {metrics !== false&& male == true ? (
-                                        <div >
-                                            
-                                            <p style={{color:'white'}}>Your estimated Current TDEE is {Math.round(person.Lifestyle * (66 + (6.23 * person.CW) +(12.7 * person.height) - (6.8 * person.age)))} calories</p>
-                                            
-                                            <p style={{color:'white'}}> To reach your goal, you have to eat {+currentPerson.GWCPW +(+Math.round(person.Lifestyle * (66 + (6.23 * person.CW) +(12.7 * person.height) - (6.8 * person.age))))} calories a day. </p>
-                                        <p style={{color:'white'}}>For Macros, try to aim for :</p>
-                                        <div class= 'flex2'>
-                                                <p style={{color:'#23c7da', textDecoration:'underline'}}>{Math.round(((.30)*tdee/4))}g of Protein</p> 
-                                                <p style={{color:'black',textDecoration:'underline'}}>{Math.round(((.40)*tdee/4))}g of Carbohydrates</p>
-                                                <p style={{color:'#c0c0c0',textDecoration:'underline'}}>{Math.round(((.30)*tdee/9))}g of Fat</p>
-                                            </div>
-                                        </div>
-
-
-                                        ) : (
-                                            <div />
-                                        )}
-                                        {metrics !== false&& female == true ? (
-                                        <div class ='flex2'>
-                                            
-                                            <p style={{color:'white'}}>Your estimated Current TDEE is {Math.round(person.Lifestyle * (655 + (4.35 * person.CW) +(4.7 * person.height) - (4.7 * person.age)))}</p>
-                                            
-                                            <p style={{color:'white'}}> To reach your goal, you have to eat {+currentPerson.GWCPW +(+Math.round(person.Lifestyle * (66 + (6.23 * person.CW) +(12.7 * person.height) - (6.8 * person.age))))}</p>
-                                        
-                                            <p style={{color:'#23c7da'}}>{Math.round(((.30)*tdee/4))}g of Protein</p> 
-                                            <p style={{color:'black'}}>{Math.round(((.40)*tdee/4))}g of Carbohydrates</p>
-                                            <p style={{color:'#c0c0c0'}}>{Math.round(((.30)*tdee/9))}g of Fat</p>
-                                        
-                                        </div>
-
-
-                                        ) : (
-                                            <div />
-                                        )}
-                                        
-                                </div>   
-                        
-                </div>
-                        
-                        {/* <h3>Don't know youre Body Fat%? Lets get you an estimate!</h3> */}
                 </div>
                   
             
             </div>
-                  <div>                          
-                    <h1 style={{color:'#c0c0c0', textDecoration:'underline'}}>Why be passionate about exercise?</h1>
+                                           
+    </Background>
+    );
+}
+
+
+
+ {/* <div>                          
+                    <h1 style={{color:'black', textDecoration:'underline'}}>Why be passionate about exercise?</h1>
                         <div class='flex2'>
                             <div class='card'>
-                                <FontAwesomeIcon icon ={faBrain} size="4x" color="#23c7da"/>
+                                <FontAwesomeIcon icon ={faBrain} size="4x" color="#4361EE"/>
                                <p>Exercise provides mental clarity. For many people it is a source of stress relief!</p>
                             </div>
                             <div class='card'>
-                                <FontAwesomeIcon icon ={faDumbbell} size="4x"color="#23c7da" />
+                                <FontAwesomeIcon icon ={faDumbbell} size="4x"color="#4361EE" />
                                 <p>Exercise makes muscles stronger, and with provided nutrients they become larger!</p>
                             </div>  
                             <div class='card'>
-                                <FontAwesomeIcon icon ={faHeartbeat} size="4x" color="#23c7da"/>
+                                <FontAwesomeIcon icon ={faHeartbeat} size="4x" color="#4361EE"/>
                                 <p>Execise greatly helps reduce risk of heart attack, lower bad cholesterol, and improves recovery time from things like hospitilizations</p>
                             </div>
                         </div>
 
 
-                  </div>                          
-    </div>
-    );
-}
+                  </div>  */}
 

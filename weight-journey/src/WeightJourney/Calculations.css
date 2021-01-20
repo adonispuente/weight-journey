@@ -10,22 +10,35 @@ body {
   font-family: sans-serif;
   /* background: linear-gradient(90deg, #141e30, #243b55); */
   width: 100%;
+  background: white;
+}
+
+.wrapper {
+  /* padding-bottom: 25%; */
+  /* background: white; */
+  width: 80%;
+  margin: 0 auto;
+  margin: -30px auto;
+  opacity: 0.95;
 }
 
 h2,
 h1 {
-  color: white;
+  color: black;
   /* margin-block: 0px; */
   padding-top: 10px;
   padding-bottom: 10px;
 }
 
-.wrapper {
-  background: linear-gradient(90deg, #141e30, #243b55);
-  /* padding-bottom: 25%; */
-  width: 90%;
-  margin: 0 auto;
-  border-radius: 130px;
+p {
+  font-family: monospace;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.formp {
+  font-size: 15px;
+  font-weight: 300;
 }
 
 .card {
@@ -34,12 +47,14 @@ h1 {
 
 .flex {
   display: flex;
-  flex-wrap: wrap;
+  margin: 30px auto;
+  /* flex-wrap: wrap; */
 }
 .flex2 {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+  padding-top: 50px;
 }
 
 @media (max-width: 576px) {
@@ -59,14 +74,14 @@ h1 {
     width: 45%;
   }
 }
+.spacing {
+  margin-top: 50px;
+}
 
 .step2 {
+  width: 65%;
   margin: 40px auto;
   /* box-shadow: 5px 5px 5px whitesmoke; */
-}
-p {
-  font-family: monospace;
-  font-size: 20px;
 }
 
 .pcf {
@@ -77,27 +92,29 @@ p {
   font-family: sans-serif;
 }
 
-.button {
-  padding: 10px 20px;
-  color: #03e9f4;
-  background-color: transparent;
-  font-size: 16px;
+button {
+  background: #f72585;
+
+  font-family: "Montserrat", sans-serif;
+  color: #fff;
   text-transform: uppercase;
-  margin-top: 40px;
-  letter-spacing: 4px;
-  /* box-shadow: 5px 5px 5px whitesmoke; */
-  border: 1px solid #03e9f4;
+  margin-top: 10px;
+  padding: 18px 35px;
+  width: 220px;
+  font-size: 14px;
+  line-height: 20px;
+  text-align: center;
+  border: none;
+  font-weight: 700;
+  letter-spacing: 2px;
+  cursor: pointer;
   border-radius: 5px;
-  font-family: "sans-serif";
 }
 
 button:hover {
-  background: #03e9f4;
+  background: #4361ee;
   color: #fff;
   border-radius: 5px;
-  box-shadow: 0 0 5px #03e9f4, 0 0 25px #03e9f4, 0 0 50px #03e9f4,
-    0 0 100px #03e9f4;
-  transition: 0.9s all ease-in-out;
   cursor: pointer;
 }
 
@@ -105,61 +122,46 @@ button:hover {
   background: transparent;
   color: #fff;
   border-radius: 5px;
-  /* box-shadow: 0 0 10px #03e9f4; */
-  box-shadow: 0 0 5px #03e9f4, 0 0 25px #03e9f4, 0 0 50px #03e9f4,
-    0 0 100px #03e9f4;
+
   transition: 0.9s all ease-in-out;
 }
 
-.pie:hover {
-  /* background: #fff; */
-  /* box-shadow: 0 0 5px #03e9f4, 0 0 25px #03e9f4, 0 0 50px #03e9f4,
-    0 0 100px #03e9f4;
-  transition: 0.9s all ease-in-out; */
-}
-
 .box {
-  background: rgba(0, 0, 0, 0.5);
   box-sizing: border-box;
-  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
   border-radius: 10px;
-  width: 50%;
-  margin: 40px auto;
+  width: 100%;
+  text-align: initial;
+  /* margin: 40px auto; */
 }
 
 label {
-  border: none;
+  width: 75%;
   padding: 3px 3px;
-  border-radius: 5px;
 }
 
 input,
-select,
-DatePicker {
-  color: #fff;
-  border: none;
+select {
+  border: 2px solid #adb5bd;
+  border-radius: 2px;
+  background: #fff;
+  padding-left: 5px;
   outline: none;
+  height: 50px;
+  /* display: block; */
   width: 100%;
-  padding: 10px 0;
-  font-size: 16px;
-  color: #fff;
-  margin-bottom: 30px;
-  border: none;
-  border-bottom: 1px solid #fff;
-  outline: none;
-  background: transparent !important;
+  font-size: 14pt;
+  line-height: 30pt;
 }
-input:focus {
-  color: #03e9f4;
-  background: transparent !important ;
+
+.secondHalf {
+  padding-top: 20px;
 }
-/* Change the white to any color ;) */
-/* changes the autfill in chrome from that light blue to whatever you want */
-input:-webkit-autofill,
+
+/* input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
   background: transparent !important;
   background-color: transparent;
   -webkit-box-shadow: 0 0 0 30px none inset !important;
-}
+} */
